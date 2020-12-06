@@ -1,5 +1,7 @@
 # TympanicMembraneClassification
 
+used dataset :
+https://figshare.com/articles/Ear_imagery_database/11886630
 
 ![Alt text](images/graphicalAbstract.jpg?raw=true "Title")
 
