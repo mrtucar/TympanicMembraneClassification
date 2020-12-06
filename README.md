@@ -1,7 +1,8 @@
 # TympanicMembraneClassification
 
 
-![Alt text](images/graphicalAbstract.png?raw=true "Title")
+![Alt text](images/graphicalAbstract.jpg?raw=true "Title")
+
 
 Step 1 : keypoint_on_image.py
 
