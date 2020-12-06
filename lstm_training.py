@@ -65,10 +65,23 @@ def CreateDataset(colorSpace):
     lstm_Test_X = np.load("data/Feature_RGB_Test/X_OD_HP_and_SURFs.npy")
     lstm_Test_Y = np.load("data/Feature_RGB_Test/y_OD_HP_and_SURFs.npy")
                           
-    lstm_Train_X = lstm_Train_X[:,:,:1472]
-    lstm_Test_X = lstm_Test_X[:,:,:1472]
     lstm_Train_Y = to_categorical(lstm_Train_Y)
     lstm_Test_Y = to_categorical(lstm_Test_Y)
+
+    x_train = []
+    for x in lstm_Train_X:
+        tmp = np.zeros((377,1472))
+        tmp[:x.shape[0],:1472] = x[:,:1472]
+        x_train.append(tmp)
+    lstm_Train_X = np.array(x_train)
+
+    x_test = []
+    for x in lstm_Test_X:
+        tmp = np.zeros((377,1472))
+        tmp[:x.shape[0],:1472] = x[:,:1472]
+        x_test.append(tmp)
+    lstm_Test_X = np.array(x_test)
+
     return lstm_Train_X,lstm_Test_X,lstm_Train_Y,lstm_Test_Y
   elif colorSpace == "HSV":
     lstm_Train_X = np.load("data/Feature_HSV_Train/X_OD_HP_and_SURFs.npy",allow_pickle=True)
