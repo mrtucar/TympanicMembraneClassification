@@ -176,7 +176,6 @@ if __name__ == '__main__':
                         loss='mse',metrics=['accuracy'])
     
           history = model.fit(x_train, y_train, epochs=150,verbose=1,batch_size=144,
-                    #validation_split = 0.2,
                     validation_data=(x_validation,y_validation),
                     callbacks=[checkpoint]
                     )
