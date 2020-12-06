@@ -164,14 +164,14 @@ def classic_sequence_classifier(seq_length,feature_count,class_count,rnn_width,d
   return Model(input, x)
 
 if __name__ == '__main__':
-    resultFolder = "LSTM_HED"
+    resultFolder = "LSTM_RGB"
     os.chdir(resultFolder)
     
     rnnWidthList = [16,32,64]
     dropOutList = [0.0,0.1,0.2,0.3,0.4,0.5]
     recurentDropOutList = [0.0,0.1,0.2,0.3,0.4,0.5]
     
-    x_train,x_test,y_train,y_test = CreateDataset("HED")
+    x_train,x_test,y_train,y_test = CreateDataset("RGB")
     x_train,x_test = MinMaxNormalization(np.array(x_train),np.array(x_test))
     
     x_train,x_validation,y_train,y_validation = SplitValidationSet(x_train,y_train)

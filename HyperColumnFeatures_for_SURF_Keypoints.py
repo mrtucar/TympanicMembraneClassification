@@ -86,7 +86,7 @@ if __name__ == '__main__':
     
     X,y=[],[]
     
-    mainFolder =  '../HED_HSV/HSV/HSV_images/'
+    mainFolder =  '../RGB_images/'
     subFolders=os.listdir(mainFolder)
     for index,folder in enumerate(subFolders):
         
@@ -121,6 +121,6 @@ if __name__ == '__main__':
     for i in range(len(X)):
         Xnew.append(list(X[i]))
         
-    np.save("/data/Feature_HSV_Train/OD_FileNames.npy",np.array(fileNames))
-    np.save("/data/Feature_HSV_Train/X_OD_HP_and_SURFs.npy",Xnew)
-    np.save("/data/Feature_HSV_Train/y_OD_HP_and_SURFs.npy",y)
+    np.save("/data/Feature_RGB_Train/OD_FileNames.npy",np.array(fileNames))
+    np.save("/data/Feature_RGB_Train/X_OD_HP_and_SURFs.npy",Xnew)
+    np.save("/data/Feature_RGB_Train/y_OD_HP_and_SURFs.npy",y)
