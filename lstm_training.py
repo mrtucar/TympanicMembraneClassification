@@ -97,21 +97,19 @@ def CreateDataset(colorSpace):
     lstm_Train_Y = to_categorical(lstm_Train_Y)
     lstm_Test_Y = to_categorical(lstm_Test_Y)
 
-    x_tr = []
+    x_train = []
     for x in lstm_Train_X:
-        #print("burada")
-        gecici = np.zeros((377,1472))        
-        gecici[:x.shape[0],:1472] = x[:,:1472]
-        x_tr.append(gecici)
-    lstm_Train_X = np.array(x_tr)   
+        tmp = np.zeros((377,1472))
+        tmp[:x.shape[0],:1472] = x[:,:1472]
+        x_train.append(tmp)
+    lstm_Train_X = np.array(x_train)
 
-    x_te = []
+    x_test = []
     for x in lstm_Test_X:
-        #print("burada")
-        gecici = np.zeros((377,1472))        
-        gecici[:x.shape[0],:1472] = x[:,:1472]
-        x_te.append(gecici)
-    lstm_Test_X = np.array(x_te)   
+        tmp = np.zeros((377,1472))
+        tmp[:x.shape[0],:1472] = x[:,:1472]
+        x_test.append(tmp)
+    lstm_Test_X = np.array(x_test)
 
     return lstm_Train_X,lstm_Test_X,lstm_Train_Y,lstm_Test_Y
   elif colorSpace == "HED":
@@ -123,21 +121,19 @@ def CreateDataset(colorSpace):
     lstm_Train_Y = to_categorical(lstm_Train_Y)
     lstm_Test_Y = to_categorical(lstm_Test_Y)
 
-    x_tr = []
+    x_train = []
     for x in lstm_Train_X:
-        #print("burada")
         tmp = np.zeros((377,1472))
         tmp[:x.shape[0],:1472] = x[:,:1472]
-        x_tr.append(tmp)
-    lstm_Train_X = np.array(x_tr)   
+        x_train.append(tmp)
+    lstm_Train_X = np.array(x_train)
 
-    x_te = []
+    x_test = []
     for x in lstm_Test_X:
-        #print("burada")
         tmp = np.zeros((377,1472))
         tmp[:x.shape[0],:1472] = x[:,:1472]
-        x_te.append(tmp)
-    lstm_Test_X = np.array(x_te)  
+        x_test.append(tmp)
+    lstm_Test_X = np.array(x_test)
 
     return lstm_Train_X,lstm_Test_X,lstm_Train_Y,lstm_Test_Y
 
@@ -179,7 +175,6 @@ if __name__ == '__main__':
     for rnnWidth in rnnWidthList:
       for pdropOut in dropOutList:
         for precurentDropOut in recurentDropOutList:
-          #precurentDropOut = pdropOut
           subFolder = "RNN_WIDTH_"
           subFolder = subFolder+str(rnnWidth)+"_"+str(pdropOut).replace(".","")+"_"+str(precurentDropOut).replace(".","")
           
@@ -196,7 +191,6 @@ if __name__ == '__main__':
                                               recurentDropOut =precurentDropOut )
           adam = Adam(learning_rate=0.0005)
           model.compile(
-                        #optimizer='adam',
                         optimizer=adam,
                         loss='mse',metrics=['accuracy'])
     

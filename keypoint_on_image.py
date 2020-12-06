@@ -37,7 +37,7 @@ def main(dataset_name,color_spaces):
                 
                 image=io.imread(path2)
                 
-                image_resized = resize(image, (224,224,3))
+                image_resized = resize(image,(224,224,3))
                 io.imsave(path2,image_resized)
                        
             
@@ -61,42 +61,6 @@ def main(dataset_name,color_spaces):
                         
                 print ("Color Space:",colorSpace," ",retina_name," point count:",len(keypoint_list))
                 cv2.imwrite(save_dir+retina_name,img)                
-
-def point_sayisini_goster(dataset_name,color_spaces,kpoints_nameList):
-    
-        en_az_sayisi=None
-        
-        for colorSpace in color_spaces:
-            
-            for kp_algorithm in kpoints_nameList:
-                
-                path1=dataset_name
-                subFolders=os.listdir(path1)
-                
-                for folder in subFolders:
-                
-                    imagelist=os.listdir(path1+folder)
-
-                    for retina_name in imagelist:
-                        
-                        keypoint_path='./keypoints/'+folder+'/'
-                                     
-                        kpoints=joblib.load(keypoint_path+retina_name+'.pkl')
-                        
-                        if en_az_sayisi==None:
-                            en_az_sayisi=len(kpoints)
-                        else:
-                            if len(kpoints)<en_az_sayisi:
-                                en_az_sayisi=len(kpoints)
-                        
-                        
-                        print (dataset_name," Dataset", retina_name,kp_algorithm,"- Keypoint count:",len(kpoints))
-
-                            
-                    print ("*************************")
-                print ("*************************")
-                print ("*************************")
-        print (en_az_sayisi)
 
 if __name__ == '__main__':
     dataset_name='./earDrumData_original/'

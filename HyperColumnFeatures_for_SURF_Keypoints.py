@@ -102,7 +102,6 @@ if __name__ == '__main__':
             fileNames.append(path2+'/'+imgRead)
             img = image.load_img(os.path.join(path2,imgRead), target_size=(224, 224,3))
             image2=io.imread(path2+'/'+imgRead)
-            print ("Bilgi:",path2+'/'+imgRead, image2.shape)
             x = image.img_to_array(img)
             x = np.expand_dims(x, axis=0)
             x = preprocess_input(x)
