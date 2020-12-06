@@ -37,7 +37,7 @@ def main(dataset_name,color_spaces):
                 
                 image=io.imread(path2)
                 
-                image_resized = image#resize(image, (224,224,3))
+                image_resized = resize(image, (224,224,3))
                 io.imsave(path2,image_resized)
                        
             
