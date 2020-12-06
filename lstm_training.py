@@ -58,25 +58,6 @@ import pickle
 2 --> Myringosclerosis
 3 --> Normal
 """
-def SplitValidationSet(x_array,y_array):
-
-  for i in (0,180,360,540):
-    x_train, x_val,y_train,y_val = train_test_split(x_array[i:i+180,:], y_array[i:i+180,:],test_size=0.2,random_state=21)
-
-    if i == 0:
-      x_t =x_train
-      x_v = x_val
-      y_t = y_train
-      y_v = y_val
-    else:
-      x_t = np.concatenate((x_t,x_train),axis=0)
-      x_v = np.concatenate((x_v,x_val),axis=0)
-      y_t = np.concatenate((y_t,y_train),axis=0)
-      y_v = np.concatenate((y_v,y_val),axis=0)
-
-
-  return x_t, x_v,y_t,y_v
-
 def CreateDataset(colorSpace):
   if colorSpace == "RGB":
     lstm_Train_X = np.load("data/Feature_RGB_Train/X_OD_HP_and_SURFs.npy")
@@ -170,7 +151,7 @@ if __name__ == '__main__':
     x_train,x_test,y_train,y_test = CreateDataset("RGB")
     x_train,x_test = MinMaxNormalization(np.array(x_train),np.array(x_test))
     
-    x_train,x_validation,y_train,y_validation = SplitValidationSet(x_train,y_train)
+    x_train,x_validation,y_train,y_validation = x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2,random_state=21,stratify=y_array)
     
     for rnnWidth in rnnWidthList:
       for pdropOut in dropOutList:
